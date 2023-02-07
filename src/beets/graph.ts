@@ -224,33 +224,17 @@ function expandPath(
             return false;
         }
 
-        if (isRelayerRoute) {
-            //for relayer routes, we're only concerned with paths that go exclusively through phantom pools
-            return (
-                path.filter((segment) => {
-                    const pool = allPools[segment.poolAddress];
+        for (let i = 0; i < path.length - 1; i++) {
+            const pool = allPools[path[i].poolAddress];
 
-                    return (
-                        pool.poolType === PoolTypes.Linear ||
-                        (pool.poolType === PoolTypes.MetaStable &&
-                            pool.tokensList.includes(segment.poolAddress))
-                    );
-                }).length === path.length
-            );
-        } else {
-            //if a pool in the path contains the bpt of another pool, the same pool appears twice in the path
-            for (let i = 0; i < path.length - 1; i++) {
-                const pool = allPools[path[i].poolAddress];
+            //TODO: path.length - 1 here doesn't look right
+            for (let j = i + 1; j < path.length - 1; j++) {
+                const otherPool = allPools[path[j].poolAddress];
 
-                //TODO: path.length - 1 here doesn't look right
-                for (let j = i + 1; j < path.length - 1; j++) {
-                    const otherPool = allPools[path[j].poolAddress];
-
-                    if (pool.tokensList.includes(otherPool.address)) {
-                        return false;
-                    } else if (otherPool.tokensList.includes(pool.address)) {
-                        return false;
-                    }
+                if (pool.tokensList.includes(otherPool.address)) {
+                    return false;
+                } else if (otherPool.tokensList.includes(pool.address)) {
+                    return false;
                 }
             }
         }

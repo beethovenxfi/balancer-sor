@@ -386,5 +386,15 @@ export const ADDRESSES = {
             decimals: 18,
             symbol: 'QI',
         },
+        BBYVUSD: {
+            address: '0x5ddb92a5340fd0ead3987d3661afcd6104c3b757',
+            decimals: 18,
+            symbol: 'bb-yv-USD',
+        },
+        BBYVUSDC: {
+            address: '0x3B998BA87b11a1c5BC1770dE9793B17A0dA61561',
+            decimals: 18,
+            symbol: 'bb-yv-USDC',
+        },
     },
 };

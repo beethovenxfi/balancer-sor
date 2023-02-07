@@ -56,10 +56,10 @@ export async function swap(): Promise<void> {
 
     // ERROR TypeError: Cannot read properties of undefined (reading 'lte')
     const maxPools = 8;
-    const tokenIn = ADDRESSES[networkId].MAI;
-    const tokenOut = ADDRESSES[networkId].QI;
+    const tokenIn = ADDRESSES[networkId].BBYVUSD;
+    const tokenOut = ADDRESSES[networkId].DAI;
     const swapType: SwapTypes = SwapTypes.SwapExactIn;
-    const swapAmount = parseFixed('600', 18);
+    const swapAmount = parseFixed('600000', 18);
 
     const sor = setUp(networkId, provider);
 
