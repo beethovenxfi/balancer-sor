@@ -77,6 +77,8 @@ export class DatabasePoolDataService implements PoolDataService {
                 return 'MetaStable';
             case 'PHANTOM_STABLE':
                 return 'StablePhantom';
+            case 'COMPOSABLE_STABLE':
+                return 'StablePhantom';
             case 'LINEAR':
                 return 'Linear';
             case 'ELEMENT':

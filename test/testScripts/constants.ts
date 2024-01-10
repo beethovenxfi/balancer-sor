@@ -427,6 +427,26 @@ export const ADDRESSES = {
             decimals: 18,
             symbol: 'XDEUS',
         },
+        SFTMX: {
+            address: '0xd7028092c830b5C8FcE061Af2E593413EbbC1fc1',
+            decimals: 18,
+            symbol: 'sFTMx',
+        },
+        WFTM: {
+            address: '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83',
+            decimals: 18,
+            symbol: 'WFTM',
+        },
+        ERN: {
+            address: '0xce1e3cc1950d2aaeb47de04de2dec2dc86380e0a',
+            decimals: 18,
+            symbol: 'ERN',
+        },
+        LZUSDC: {
+            address: '0x28a92dde19d9989f39a49905d7c9c2fac7799bdf',
+            decimals: 6,
+            symbol: 'USDC',
+        },
     },
     [Network.OPTIMISM]: {
         ETH: {

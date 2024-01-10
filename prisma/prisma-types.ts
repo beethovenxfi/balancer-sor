@@ -1,6 +1,11 @@
-import { Prisma, PrismaToken, PrismaTokenTypeOption } from '@prisma/client';
+import {
+    Prisma,
+    PrismaToken,
+    PrismaTokenPrice,
+    PrismaTokenTypeOption,
+} from '@prisma/client';
 
-const poolWithTokens = Prisma.validator<Prisma.PrismaPoolArgs>()({
+export const poolWithTokens = Prisma.validator<Prisma.PrismaPoolArgs>()({
     include: { tokens: true },
 });
 
@@ -26,6 +31,7 @@ export const prismaPoolWithExpandedNesting =
             dynamicData: true,
             stableDynamicData: true,
             linearDynamicData: true,
+            gyroData: true,
             staking: {
                 include: {
                     farm: {
@@ -265,6 +271,13 @@ export const prismaPoolMinimal = Prisma.validator<Prisma.PrismaPoolArgs>()({
                         rewards: true,
                     },
                 },
+                reliquary: {
+                    include: {
+                        levels: {
+                            orderBy: { level: 'asc' },
+                        },
+                    },
+                },
             },
         },
     },
@@ -285,4 +298,25 @@ export const prismaPoolBatchSwapWithSwaps =
 
 export type PrismaPoolBatchSwapWithSwaps = Prisma.PrismaPoolBatchSwapGetPayload<
     typeof prismaPoolBatchSwapWithSwaps
+>;
+
+export const prismaPoolWithDynamic = Prisma.validator<Prisma.PrismaPoolArgs>()({
+    include: {
+        stableDynamicData: true,
+        dynamicData: true,
+        linearDynamicData: true,
+        linearData: true,
+        gyroData: true,
+        tokens: {
+            orderBy: { index: 'asc' },
+            include: {
+                token: true,
+                dynamicData: true,
+            },
+        },
+    },
+});
+
+export type PrismaPoolWithDynamic = Prisma.PrismaPoolGetPayload<
+    typeof prismaPoolWithDynamic
 >;
